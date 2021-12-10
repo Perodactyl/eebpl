@@ -1,0 +1,17 @@
+{
+  "name": "eebpl",
+  "version": "1.0.0",
+  "description": "Easily Extensible Binary Programming Language",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "node build/test.js"
+  },
+  "keywords": [
+    "binary",
+    "language",
+    "ts",
+    "typescript"
+  ],
+  "author": "Perodactyl",
+  "license": "ISC"
+}
