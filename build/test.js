@@ -10,7 +10,17 @@ const ebl = require("./index");
             process.stdout.write(args[0]);
         }
     });
-    ebl.executeSequence("\0h\0e\0l\0l\0o\0 \0w\0o\0r\0l\0d");
+    ebl.registerCommand({
+        id: 1,
+        name: "HLW",
+        length: 6,
+        action: args => {
+            console.log("hello", args);
+        }
+    });
+    await ebl.executeSequence("\0h\0e\0l\0l\0o\0 \0w\0o\0r\0l\0d");
+    console.log("\nfile:\n");
+    await ebl.executeFile("test.ebpl");
 })().catch((e) => {
     console.error(e);
 });

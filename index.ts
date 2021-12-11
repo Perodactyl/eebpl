@@ -20,11 +20,20 @@ export function registerCommand(...commands:command[]){
 export async function execute(data:ArrayBufferLike|String,cursor?:cursor){
 	var id = data[0].codePointAt(0)
 	var command = getCommand(id)
+	if(!command){
+		cursor.position = -1
+		throw "\nAttempt to execute unknown command ID: "+id+(cursor ? " @byte: "+cursor.position : "")
+	}
 	var len = command.length
 	command.action(data.slice(1),cursor,id)
 	if(cursor && len > 0){
 		cursor.position += len || 1
 	}
+}
+export async function executeFile(path:string){
+	var buf = await readFile(path)
+	var file = buf.toString()
+	await executeSequence(file)
 }
 export function getCommand(id:number|string) : command|undefined{
 	return commandList.find(el=>el.id == (typeof id == "number" ? id : id.codePointAt(0)))
@@ -44,5 +53,8 @@ export async function executeSequence(data:String){
 			line = data.slice(cursor.position)
 		}
 		await execute(line,cursor)
+		if(cursor.position == -1){
+			return
+		}
 	}
 }
