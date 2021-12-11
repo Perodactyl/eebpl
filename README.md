@@ -21,3 +21,9 @@ This just adds a command and immediately runs it. You can also execute multiple 
 ```ts
 ebl.executeSequence("\0world\0test \0thing")
 ```
+
+
+This package is installable via npm, available as `eebpl`.
+```
+npm i eebpl
+```
