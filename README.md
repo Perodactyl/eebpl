@@ -5,14 +5,13 @@ Easily extensible binary programming language is written in typescript, with a v
 Now, there's a reason why it's called "easily extensible." Observe:
 
 ```ts
-//This code hasn't actually been tested
 import * as ebl from "eebpl"
 ebl.registerCommand({
 	id:0,
 	name:"HLW", //Hello World
 	length:6 //One byte of Command, 5 characters afterwords
 	action:function(args){
-		console.log("hello "+args.join(""))
+		console.log("hello "+args)
 	}
 })
 ebl.execute("\0world") //Now run it. Null is id 0, then the arguments
